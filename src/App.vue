@@ -85,4 +85,19 @@
   .gap {
     margin-top: 50px;
   }
+
+  /*Dialog window CSS style*/
+  .dg-btn--ok {
+    border-color: green;
+    color: green;
+  }
+
+  .dg-btn--cancel {
+    border-color: red;
+    background-color: #f63636;
+  }
+
+  .dg-btn-loader .dg-circle {
+    background-color: green;
+  }
 </style>

@@ -4,6 +4,7 @@ import VueResource from 'vue-resource';
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress';
 import BootstrapVue from 'bootstrap-vue'
+import VuejsDialog from "vuejs-dialog"
 
 
 import App from './App.vue'
@@ -16,6 +17,13 @@ import '../node_modules/nprogress/nprogress.css'
 Vue.use(BootstrapVue);
 Vue.use(VueFire);
 Vue.use(VueRouter);
+Vue.use(VuejsDialog, {
+  html: true,
+  loader: true,
+  okText: 'Confirm',
+  cancelText: 'Cancel',
+  animation: 'bounce',
+});
 Vue.use(require('vue-moment'));
 Vue.config.productionTip = false;
 

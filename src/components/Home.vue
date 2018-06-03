@@ -100,13 +100,28 @@
         envs: []
       }
     },
+
     firebase: {
       envs: db.ref('envs')
     },
 
     methods: {
       deleteEnv(key) {
-        this.$firebaseRefs.envs.child(key).remove();
+        this.$dialog.confirm("If you delete this record, it'll be gone forever.", {
+          loader: true // default: false - when set to true, the proceed button shows a loader when clicked.
+          // And a dialog object will be passed to the then() callback
+        })
+          .then((dialog) => {
+            setTimeout(() => {
+              this.$firebaseRefs.envs.child(key).remove();
+              console.log('Delete action completed ');
+              dialog.close();
+            }, 2500);
+          })
+          .catch(() => {
+            // Triggered when cancel button is clicked
+            console.log('Delete aborted');
+          });
       }
     },
 
@@ -157,6 +172,7 @@
   .table > thead > tr > th {
     text-align: center;
   }
+
 
 
 </style>
