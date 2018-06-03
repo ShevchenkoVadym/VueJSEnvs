@@ -1,7 +1,6 @@
 <template>
   <div class="row">
-
-    <table class="table table-bordered">
+    <table class="table table-bordered" v-if="loaded">
       <thead class="thead-light">
       <tr>
         <th>EEA-SQM</th>
@@ -59,8 +58,6 @@
           <button type="button" @click="deleteEnv(env['.key'])" class="btn btn-danger">DELETE</button>
         </td>
 
-
-
       </tr>
       <tr v-for="node in env.nodes.slice(1, env.nodes.length)">
         <td rowspan="1">{{node.hostname | shortName}}</td>
@@ -72,37 +69,46 @@
       </tbody>
     </table>
 
-
+    <!--SPINNER-->
+    <div style="margin:auto;" v-else>
+      <fulfilling-bouncing-circle-spinner
+        :animation-duration="4000"
+        :size="60"
+        color="#3D9970"
+      ></fulfilling-bouncing-circle-spinner>
+    </div>
 
   </div>
 
 </template>
 
 <script>
-
+  import { FulfillingBouncingCircleSpinner } from 'epic-spinners'
   import {db} from '../config/db';
+  import {eventBus} from '../main'
 
   export default {
     components: {
-      name: 'Home'
+      name: 'Home',
+      FulfillingBouncingCircleSpinner
     },
 
     data() {
       return {
-
-        fields: ['first_name', 'last_name', 'show_details', 'lol_intereesting'],
-        items: [
-          {isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald'},
-          {isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw'},
-          {isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson', _showDetails: true},
-          {isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney'}
-        ],
+        loaded: false,
         envs: []
       }
     },
 
     firebase: {
-      envs: db.ref('envs')
+      envs: {
+        source: db.ref("envs"),
+        cancelCallback: function () {
+        },
+        readyCallback: function () {
+          this.loaded = true;
+        }
+      },
     },
 
     methods: {
@@ -122,6 +128,11 @@
             // Triggered when cancel button is clicked
             console.log('Delete aborted');
           });
+      },
+
+      reloadData() {
+        this.loaded = false;
+        setTimeout(() => {this.loaded = true}, 1000);
       }
     },
 
@@ -138,7 +149,14 @@
           return value.split(".")[0]
         }
       }
-    }
+    },
+
+    created () {
+      eventBus.$on('reload', () => {
+        this.reloadData();
+      });
+    },
+
   }
 
   /*  computed: {
@@ -152,6 +170,7 @@
 </script>
 
 <style scoped>
+
   div {
     margin: 20px;
   }

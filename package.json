@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "^4.1.1",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "epic-spinners": "^1.0.3",
     "firebase": "^5.0.4",
     "nprogress": "^0.2.0",
     "vue": "^2.5.11",

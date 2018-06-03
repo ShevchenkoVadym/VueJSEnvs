@@ -6,13 +6,14 @@ import NProgress from 'nprogress';
 import BootstrapVue from 'bootstrap-vue'
 import VuejsDialog from "vuejs-dialog"
 
-
 import App from './App.vue'
 import AddEnv from './components/AddEnv.vue'
 import EditEnv from './components/EditEnv.vue'
 import Home from './components/Home.vue'
 
 import '../node_modules/nprogress/nprogress.css'
+
+export const eventBus = new Vue();
 
 Vue.use(BootstrapVue);
 Vue.use(VueFire);
