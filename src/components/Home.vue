@@ -1,7 +1,5 @@
 <template>
   <div class="row">
-
-
     <table class="table table-bordered" v-if="loaded">
       <thead class="thead-light">
       <tr>
@@ -271,7 +269,6 @@
       });
     },
     computed: {
-
       filteredEnvs: function () {
         this.computedEnvs = this.envs;
         if (this.search) {
@@ -280,11 +277,6 @@
         }
         return this.computedEnvs;
       }
-      /* filteredEnvs() {
-         this.envs = this.envs.filter(env => {
-           return env.typeEnvironment.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-         })
-       }*/
     }
   }
 

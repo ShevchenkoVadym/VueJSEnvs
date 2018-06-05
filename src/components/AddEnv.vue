@@ -188,7 +188,6 @@
           <!--        ADD NODE FORM END        -->
 
 
-
           <div class="form-group">
             <label>Owner:</label>
             <input type="text" class="form-control" v-model="newEnv.owner"/>

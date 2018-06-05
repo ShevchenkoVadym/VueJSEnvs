@@ -18,16 +18,8 @@
     components: {
       'app-header': Header,
       'app-footer': Footer,
-      'app-home':  Home,
+      'app-home': Home,
     },
-
-    data() {
-      return {
-      };
-    },
-    methods: {
-
-    }
   }
 </script>
 

@@ -184,10 +184,7 @@
           </b-alert>
 
           <hr>
-
           <!--        ADD NODE FORM END        -->
-
-
 
           <div class="form-group">
             <label>Owner:</label>
@@ -329,8 +326,6 @@
         this.newEnv.nodes.splice(index, 1)
       }
     },
-
-
 
   }
 </script>

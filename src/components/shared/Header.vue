@@ -31,8 +31,11 @@
 
     </div>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" :disabled="$route.path==='/' ? false : true">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" :disabled="$route.path==='/' ? false : true">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+             :disabled="$route.path==='/' ? false : true">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" :disabled="$route.path==='/' ? false : true">
+        Search
+      </button>
     </form>
   </nav>
 </template>
@@ -46,9 +49,6 @@
       Home: "Home",
     },
 
-    data() {
-      return {};
-    },
     methods: {
       reload() {
         eventBus.$emit('reload', {});
@@ -64,7 +64,7 @@
     margin: 0px 10px 0px 10px;
   }
 
-  .disabled{
+  .disabled {
     background-color: black;
   }
 
