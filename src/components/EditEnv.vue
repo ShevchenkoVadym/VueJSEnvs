@@ -283,6 +283,7 @@
         nodes: env.nodes,
         svcMgmtLink: env.svcMgmtLink,
         utf8: env.utf8,
+        isCemInstalled: env.isCemInstalled,
         owner: env.owner,
         comments: env.comments,
         sqmLink: env.sqmLink,
