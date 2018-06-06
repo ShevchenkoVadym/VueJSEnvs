@@ -13,8 +13,8 @@
         <div class="col-md-6 mt-md-0 mt-3 bg-light">
 
           <!-- Content -->
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content.</p>
+          <h5 class="text-uppercase">CFIUS zone environments</h5>
+          <p>Single page application to simply get information about CFIUS side servers</p>
 
         </div>
         <!-- Grid column -->
@@ -29,16 +29,22 @@
 
           <ul class="list-unstyled">
             <li>
-              <a href="#!">Link 1</a>
+              <a href="http://win10-eem3.cc.telcordia.com:8080/" target="_blank">Internal CFIUS Jenkins</a>
             </li>
             <li>
-              <a href="#!">Link 2</a>
+              <a href="http://jirahost.cc.telcordia.com:8080/secure/WelcomeToJIRA.jspa" target="_blank">JIRA - EEA-SQM</a>
             </li>
             <li>
-              <a href="#!">Link 3</a>
+              <a href="http://teams02.telcordia.com/sites/NextGenOSS/servicedirector/default.aspx" target="_blank">Experience Manager Collaboration Portal</a>
             </li>
             <li>
-              <a href="#!">Link 4</a>
+              <a href="http://bugzilla.cc.telcordia.com/" target="_blank">Bugzilla Main Page</a>
+            </li>
+            <li>
+              <a href="http://tinos.lab254.telcordia.com:8081/#/dashboard/self" target="_blank">Gerrit Code Review</a>
+            </li>
+            <li>
+              <a href="https://reni.cc.telcordia.com/suf-login" target="_blank">Admin Node - SUF Reni</a>
             </li>
           </ul>
 
