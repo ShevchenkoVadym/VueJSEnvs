@@ -31,11 +31,8 @@
 
     </div>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="search" v-on:input="searchMethod"
              :disabled="$route.path==='/' ? false : true">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" :disabled="$route.path==='/' ? false : true">
-        Search
-      </button>
     </form>
   </nav>
 </template>
@@ -49,10 +46,26 @@
       Home: "Home",
     },
 
+    data() {
+      return {
+        search: ""
+      }
+    },
+
     methods: {
       reload() {
         eventBus.$emit('reload', {});
+      },
+      searchMethod() {
+        eventBus.$emit('search', this.search);
+
       }
+    },
+
+    computed: {
+      filteredEnvs: function () {
+        eventBus.$emit('search', this.search);
+      },
     }
   }
 

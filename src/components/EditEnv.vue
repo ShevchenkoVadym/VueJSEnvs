@@ -248,6 +248,7 @@
           {value: "", text: 'Please select development Type'},
           {value: 'currentDevelopment', text: 'Current Development'},
           {value: 'openReleases', text: 'Open releases'},
+          {value: 'retired', text: 'Retired'},
         ],
 
         optionsServerUsageType: [

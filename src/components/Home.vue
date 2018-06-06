@@ -1,5 +1,16 @@
 <template>
   <div class="row">
+
+    <b-form-group style="margin:auto;">
+      <b-form-radio-group id="btnradios2"
+                          buttons
+                          button-variant="outline-primary"
+                          size="lg"
+                          v-model="selectedFilter"
+                          :options="filterOptions"
+                          name="radioBtnOutline"/>
+    </b-form-group>
+
     <table class="table table-bordered" v-if="loaded">
       <thead class="thead-light">
       <tr>
@@ -173,8 +184,6 @@
 
       <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-btn>
     </b-modal>
-    <input type="text" class="form-control" placeholder="search" v-model="search"/>
-
   </div>
 
 </template>
@@ -192,11 +201,20 @@
 
     data() {
       return {
-        search: "",
-        selectedEnv: {},
-        loaded: false,
         envs: [],
         computedEnvs: [],
+        selectedEnv: {},
+
+        search: "",
+
+        selectedFilter: 'currentDevelopment',
+        filterOptions: [
+          {text: 'Current Development', value: 'currentDevelopment'},
+          {text: 'Open Releases', value: 'openReleases'},
+          {text: 'Retired', value: 'retired'},
+          {text: 'All Environments', value: 'all'}
+        ],
+        loaded: false,
       }
     },
 
@@ -245,6 +263,11 @@
 
       hideModal() {
         this.$refs.myModalRef.hide()
+      },
+
+      filterByType: function () {
+        this.computedEnvs = this.envs;
+        return this.computedEnvs;
       }
     },
 
@@ -260,23 +283,31 @@
         if (value) {
           return value.split(".")[0]
         }
-      }
+      },
     },
 
     created() {
       eventBus.$on('reload', () => {
         this.reloadData();
       });
+
+      eventBus.$on('search', (value) => {
+        this.search = value;
+
+      });
     },
     computed: {
       filteredEnvs: function () {
         this.computedEnvs = this.envs;
-        if (this.search) {
-          this.computedEnvs = this.computedEnvs.filter(item => item.owner.toUpperCase().includes(this.search.toUpperCase()) /*|| item.username.toUpperCase().includes(this.search.toUpperCase()) || item.email.toUpperCase().includes(this.search.toUpperCase()*/);
+        if (this.selectedFilter === "all") {
+          this.computedEnvs = this.computedEnvs.filter(item => item.versionSQM.toUpperCase().includes(this.search.toUpperCase()));
+          return this.computedEnvs;
+        } else {
+          this.computedEnvs = this.computedEnvs.filter(item => item.typeEnvironment.toUpperCase().includes(this.selectedFilter.toUpperCase()));
           return this.computedEnvs;
         }
         return this.computedEnvs;
-      }
+      },
     }
   }
 
@@ -319,5 +350,6 @@
   .details td, .details th {
     padding: 5px 10px 0px 0px;
   }
+
 
 </style>
