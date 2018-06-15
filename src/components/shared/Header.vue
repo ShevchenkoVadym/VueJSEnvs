@@ -32,7 +32,8 @@
     </div>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="search" v-on:input="searchMethod"
-             :disabled="$route.path==='/' ? false : true">
+             :disabled="$route.path!=='/'">
+      <b-button variant="secondary" @click.prevent="reset" :disabled="($route.path!=='/') && (search === '')">Reset</b-button>
     </form>
   </nav>
 </template>
@@ -58,7 +59,10 @@
       },
       searchMethod() {
         eventBus.$emit('search', this.search);
-
+      },
+      reset() {
+        this.search = "";
+        eventBus.$emit('search', this.search);
       }
     },
 

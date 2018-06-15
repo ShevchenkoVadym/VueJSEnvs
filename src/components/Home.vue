@@ -4,7 +4,6 @@
     <b-form-group style="margin:auto;">
       <b-form-radio-group id="btnradios2"
                           buttons
-                          button-variant="outline-primary"
                           size="lg"
                           v-model="selectedFilter"
                           :options="filterOptions"
@@ -17,6 +16,7 @@
         <th>EEA-SQM</th>
         <th>Build Number</th>
         <th>iSecure</th>
+        <th>OS</th>
         <th>Host</th>
         <th>Host Type</th>
         <th>Version</th>
@@ -36,6 +36,9 @@
         <td :rowspan="env.nodes.length">{{env.versionSQM | emptyValues}}</td>
         <td :rowspan="env.nodes.length">{{env.build | emptyValues}}</td>
         <td :rowspan="env.nodes.length">{{env.versionISecure | emptyValues}}</td>
+        <td rowspan="1">
+          {{env.nodes[0].os | emptyValues}}
+        </td>
         <td rowspan="1">
           {{env.nodes[0].hostname | shortName}}
         </td>
@@ -71,6 +74,7 @@
 
       </tr>
       <tr v-for="node in env.nodes.slice(1, env.nodes.length)">
+        <td rowspan="1">{{node.os}}</td>
         <td rowspan="1">{{node.hostname | shortName}}</td>
         <td rowspan="1">{{node.hostType}}</td>
         <td rowspan="1">{{node.version | emptyValues}}</td>
@@ -299,15 +303,49 @@
     computed: {
       filteredEnvs: function () {
         this.computedEnvs = this.envs;
-        if (this.selectedFilter === "all") {
-          this.computedEnvs = this.computedEnvs.filter(item => item.versionSQM.toUpperCase().includes(this.search.toUpperCase()));
-          return this.computedEnvs;
+        let lowSearch = this.search.toLowerCase();
+        let selectedEnv = this.selectedFilter;
+        if (selectedEnv === "all") {
+      /*    let result1 =  this.computedEnvs.filter(function(env){
+            return Object.values(env).some( val => String(val).toLowerCase().includes(lowSearch));
+          });*/
+          return result2 = this.computedEnvs.filter(function(env){
+            console.log(env)
+            return env.nodes.filter(function (node) {
+              return Object.values(node).some( val => String(val).toLowerCase().includes(lowSearch));
+            });
+          });
+
+//          return result2;
+
         } else {
-          this.computedEnvs = this.computedEnvs.filter(item => item.typeEnvironment.toUpperCase().includes(this.selectedFilter.toUpperCase()));
-          return this.computedEnvs;
+          return this.computedEnvs.filter(function(env){
+            return env.typeEnvironment.includes(selectedEnv) && Object.values(env).some( val =>
+              String(val).toLowerCase().includes(lowSearch)
+            );
+          });
+        }
+      },
+
+/*      filteredEnvs: function () {
+        this.computedEnvs = this.envs;
+        let lowSearch = this.search.toLowerCase();
+        let selectedEnv = this.selectedFilter;
+        if (this.selectedFilter === "all") {
+          return this.computedEnvs.filter(function(env){
+            return Object.values(env).some( val =>
+              String(val).toLowerCase().includes(lowSearch)
+            );
+          });
+        } else {
+          return this.computedEnvs.filter(function(env){
+            return env.typeEnvironment.includes(selectedEnv) && Object.values(env).some( val =>
+              String(val).toLowerCase().includes(lowSearch)
+            );
+          });
         }
         return this.computedEnvs;
-      },
+      },*/
     }
   }
 

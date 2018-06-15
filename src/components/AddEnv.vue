@@ -120,6 +120,16 @@
                   <div class="row">
                     <div class="form-group form-group-sm col-sm-6">
                       <div class="row">
+                        <label for="os" class="col-sm-3 col-form-label">OS:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="os" name="os"
+                                 placeholder="Red Hat 7.3 Santiago" v-model="node.os" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-group-sm col-sm-6">
+                      <div class="row">
                         <label for="model" class="col-sm-3 col-form-label">Model:</label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" id="model"
@@ -144,16 +154,6 @@
                         <div class="col-sm-9">
                           <input type="number" class="form-control" id="hardware_ram" name="hardware_ram"
                                  placeholder="64" v-model="node.hardware_ram">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group form-group-sm col-sm-6">
-                      <div class="row">
-                        <label for="os" class="col-sm-3 col-form-label">OS:</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="os" name="os"
-                                 placeholder="Red Hat 7.3 Santiago" v-model="node.os">
                         </div>
                       </div>
                     </div>
